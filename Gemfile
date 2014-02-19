@@ -43,14 +43,14 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'quiet_assets'
+gem 'devise'
+gem 'faker'
+gem 'pundit'
+gem 'email_format'
+gem 'gravatar_image_tag'
+gem 'font-awesome-rails'
+gem 'bootstrap-sass', '~> 3.0.3.0'
 
 # Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'unicorn'
