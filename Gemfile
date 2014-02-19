@@ -35,6 +35,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'sqlite3'
   gem 'thin'
+  gem 'faker'
   gem 'letter_opener'
 end
 
@@ -45,7 +46,6 @@ end
 
 gem 'quiet_assets'
 gem 'devise'
-gem 'faker'
 gem 'pundit'
 gem 'email_format'
 gem 'gravatar_image_tag'
