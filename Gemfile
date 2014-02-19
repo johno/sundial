@@ -50,6 +50,7 @@ gem 'pundit'
 gem 'email_format'
 gem 'gravatar_image_tag'
 gem 'font-awesome-rails'
+gem 'bootstrap-generators', '~> 3.0.2'
 gem 'bootstrap-sass', '~> 3.0.3.0'
 
 # Use unicorn as the app server
