@@ -1,10 +1,12 @@
 class BlocksController < ApplicationController
   before_action :set_block, only: [:show, :edit, :update, :destroy]
 
-  # GET /blocks
-  # GET /blocks.json
+  # GET /projects/:id/tasks/:id/blocks
+  # GET /projects/:id/tasks/:id/blocks.json
   def index
-    @blocks = Block.all
+    @blocks = policy_scope(Project).where(id: params[:project_id]).limit(1).first
+                                   .tasks.where(id: params[:task_id]).limit(1).first
+                                   .blocks
   end
 
   # GET /blocks/1

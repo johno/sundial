@@ -1,7 +1,7 @@
 Sundial::Application.routes.draw do
-  resources :blocks
-
-  resources :tasks
+  
+  resources :blocks, except: [:index]
+  resources :tasks,  except: [:index]
 
   resources :projects do
     resources :tasks do

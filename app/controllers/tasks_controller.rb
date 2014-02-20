@@ -1,12 +1,12 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
-  # GET /tasks
-  # GET /tasks.json
+  # GET project/:id/tasks
+  # GET project/:id/tasks.json
   def index
-    @project = Project.find(params[:project_id])
-    TaskPolicy.new(current_user, @project).index?
-    @tasks = @project.tasks
+    @tasks = policy_scope(Project).where(id: params[:project_id])
+                                  .limit(1).first
+                                  .tasks
   end
 
   # GET /tasks/1
