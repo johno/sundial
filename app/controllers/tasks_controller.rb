@@ -4,7 +4,9 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    @project = Project.find(params[:project_id])
+    TaskPolicy.new(current_user, @project).index?
+    @tasks = @project.tasks
   end
 
   # GET /tasks/1

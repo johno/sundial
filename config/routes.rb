@@ -3,7 +3,9 @@ Sundial::Application.routes.draw do
 
   resources :tasks
 
-  resources :projects
+  resources :projects do
+    resources :tasks
+  end
 
   root to: 'projects#index'
 

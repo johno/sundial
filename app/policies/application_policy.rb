@@ -9,12 +9,8 @@ class ApplicationPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
-    @user = user
+    @user   = user
     @record = record
-  end
-
-  def index?
-    false
   end
 
   def show?
@@ -47,7 +43,7 @@ class ApplicationPolicy
 
   private
 
-    def belongs_to_user?
-      @record.user == @user
+    def belongs_to_user?(other_resource = nil)
+      (other_resource || @record).user == @user
     end
 end
