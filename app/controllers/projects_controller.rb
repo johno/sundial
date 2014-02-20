@@ -4,12 +4,13 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = policy_scope(Project)
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
+    authorize @project
   end
 
   # GET /projects/new
@@ -19,6 +20,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    authorize @project
   end
 
   # POST /projects
@@ -26,6 +28,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
 
+    authorize @project
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -40,6 +43,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    authorize @project
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -54,6 +58,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    authorize @project
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url }
