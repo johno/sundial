@@ -6,7 +6,10 @@ describe User do
 
   subject { user }
 
-  it { should respond_to(:email) }
+  it { should respond_to(:email)    }
+  it { should respond_to(:projects) }
+  it { should respond_to(:tasks)    }
+  it { should respond_to(:blocks)   }
 
   describe 'email validation' do
 
