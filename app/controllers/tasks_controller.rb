@@ -4,8 +4,7 @@ class TasksController < ApplicationController
   # GET project/:id/tasks
   # GET project/:id/tasks.json
   def index
-    @tasks = policy_scope(Project).where(id: params[:project_id])
-                                  .limit(1).first
+    @tasks = policy_scope(Project).where(id: params[:project_id]).limit(1).first
                                   .tasks
   end
 
