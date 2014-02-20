@@ -12,6 +12,7 @@ class BlocksController < ApplicationController
   # GET /blocks/1
   # GET /blocks/1.json
   def show
+    authorize @block
   end
 
   # GET /blocks/new
@@ -21,6 +22,7 @@ class BlocksController < ApplicationController
 
   # GET /blocks/1/edit
   def edit
+    authorize @block
   end
 
   # POST /blocks
@@ -28,6 +30,7 @@ class BlocksController < ApplicationController
   def create
     @block = Block.new(block_params)
 
+    authorize @block
     respond_to do |format|
       if @block.save
         format.html { redirect_to @block, notice: 'Block was successfully created.' }
@@ -42,6 +45,7 @@ class BlocksController < ApplicationController
   # PATCH/PUT /blocks/1
   # PATCH/PUT /blocks/1.json
   def update
+    authorize @block
     respond_to do |format|
       if @block.update(block_params)
         format.html { redirect_to @block, notice: 'Block was successfully updated.' }
@@ -56,6 +60,7 @@ class BlocksController < ApplicationController
   # DELETE /blocks/1
   # DELETE /blocks/1.json
   def destroy
+    authorize @block
     @block.destroy
     respond_to do |format|
       format.html { redirect_to blocks_url }
