@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140220015243) do
   create_table "projects", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "color"
+    t.string   "color",       default: "blue"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

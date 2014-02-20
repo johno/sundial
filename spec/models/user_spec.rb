@@ -1,5 +1,26 @@
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let(:user) { FactoryGirl.build(:user) }
+
+  subject { user }
+
+  it { should respond_to(:email) }
+
+  describe 'email validation' do
+
+    it 'should be valid with a valid email' do
+      expect(user.valid?).to be_true
+    end
+
+    context 'with an invalid email' do
+
+      before { user.email = 'invalid_email' }
+
+      it 'should be invalid' do
+        expect(user.valid?).to be_false
+      end
+    end
+  end
 end
