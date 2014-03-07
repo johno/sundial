@@ -20,13 +20,16 @@ require 'spec_helper'
 
 describe TasksController do
 
+  let(:user) { FactoryGirl.create(:user) }
+  let(:project) { FactoryGirl.create(:project, user: user) }
+
   # This should return the minimal set of attributes required to create a valid
   # Task. As you add validations to Task, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     {
       name: "MyString",
-      project_id: FactoryGirl.create(:project).id
+      project_id: project.id
     }
   }
 
@@ -35,7 +38,7 @@ describe TasksController do
   # TasksController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  before { login_user }
+  before { login_user(user) }
 
   describe "GET show" do
     it "assigns the requested task as @task" do
@@ -79,22 +82,6 @@ describe TasksController do
         response.should redirect_to(Task.last)
       end
     end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved task as @task" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Task.any_instance.stub(:save).and_return(false)
-        post :create, {:task => { "name" => "invalid value" }}, valid_session
-        assigns(:task).should be_a_new(Task)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Task.any_instance.stub(:save).and_return(false)
-        post :create, {:task => { "name" => "invalid value" }}, valid_session
-        response.should render_template("new")
-      end
-    end
   end
 
   describe "PUT update" do
@@ -119,24 +106,6 @@ describe TasksController do
         task = Task.create! valid_attributes
         put :update, {:id => task.to_param, :task => valid_attributes}, valid_session
         response.should redirect_to(task)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the task as @task" do
-        task = Task.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Task.any_instance.stub(:save).and_return(false)
-        put :update, {:id => task.to_param, :task => { "name" => "invalid value" }}, valid_session
-        assigns(:task).should eq(task)
-      end
-
-      it "re-renders the 'edit' template" do
-        task = Task.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Task.any_instance.stub(:save).and_return(false)
-        put :update, {:id => task.to_param, :task => { "name" => "invalid value" }}, valid_session
-        response.should render_template("edit")
       end
     end
   end

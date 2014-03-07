@@ -2,12 +2,7 @@ require 'spec_helper'
 
 describe "projects/edit" do
   before(:each) do
-    @project = assign(:project, stub_model(Project,
-      :name => "MyString",
-      :description => "MyText",
-      :color => "MyString",
-      :user_id => 1
-    ))
+    @project = assign(:project, FactoryGirl.create(:project))
   end
 
   it "renders the edit project form" do

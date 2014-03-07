@@ -13,11 +13,13 @@ class BlocksController < ApplicationController
   # GET /blocks/1.json
   def show
     authorize @block
+    puts @block.inspect
   end
 
   # GET /blocks/new
   def new
     @block = Block.new
+    puts @block.inspect
   end
 
   # GET /blocks/1/edit

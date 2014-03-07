@@ -20,13 +20,17 @@ require 'spec_helper'
 
 describe BlocksController do
 
+  let(:user)    { FactoryGirl.create(:user)                   }
+  let(:task)    { FactoryGirl.create(:task, project: project) }
+  let(:project) { FactoryGirl.create(:project, user: user)    }
+
   # This should return the minimal set of attributes required to create a valid
   # Block. As you add validations to Block, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) { 
     {
       started_at: "2014-02-19 18:52:43",
-      task_id: FactoryGirl.create(:task).id
+      task_id: task.id
     }
   }
 
@@ -35,12 +39,12 @@ describe BlocksController do
   # BlocksController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  before { login_user }
+  before { login_user(user) }
 
   describe "GET show" do
     it "assigns the requested block as @block" do
-      block = Block.create! valid_attributes
-      get :show, {:id => block.to_param}, valid_session
+      block = FactoryGirl.create(:block, task: task)
+      get :show, {id: block.to_param }, valid_session
       assigns(:block).should eq(block)
     end
   end
