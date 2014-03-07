@@ -17,4 +17,8 @@ describe Task do
   it "should be counting if there's a block counting" do
     expect(FactoryGirl.create(:block, ended_at: nil).task.reload.counting?).to be_true
   end
+
+  it "shouldn't be counting if there isn't a block counting" do
+    expect(FactoryGirl.create(:block).task.reload.counting?).to be_false
+  end
 end

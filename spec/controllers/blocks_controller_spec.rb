@@ -23,20 +23,19 @@ describe BlocksController do
   # This should return the minimal set of attributes required to create a valid
   # Block. As you add validations to Block, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "started_at" => "2014-02-19 18:52:43" } }
+  let(:valid_attributes) { 
+    {
+      started_at: "2014-02-19 18:52:43",
+      task_id: FactoryGirl.create(:task).id
+    }
+  }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # BlocksController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all blocks as @blocks" do
-      block = Block.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:blocks).should eq([block])
-    end
-  end
+  before { login_user }
 
   describe "GET show" do
     it "assigns the requested block as @block" do

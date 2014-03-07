@@ -23,12 +23,19 @@ describe TasksController do
   # This should return the minimal set of attributes required to create a valid
   # Task. As you add validations to Task, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "name" => "MyString" } }
+  let(:valid_attributes) {
+    {
+      name: "MyString",
+      project_id: FactoryGirl.create(:project).id
+    }
+  }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # TasksController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+
+  before { login_user }
 
   describe "GET index" do
     it "assigns all tasks as @tasks" do
