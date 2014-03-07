@@ -4,7 +4,7 @@ class Block < ActiveRecord::Base
   has_one :user, through: :project
 
   validates_presence_of :started_at, :task
-  validate :only_one_counting_block_per_task
+  validate :only_one_counting_block_per_task, if: :new_record?
 
   def counting?
     ended_at.nil?
@@ -17,7 +17,7 @@ class Block < ActiveRecord::Base
   private
 
     def only_one_counting_block_per_task
-      unless task && task.blocks.select(&:counting?).count > 1
+      if task && Block.where(task_id: task.id, ended_at: nil).exists?
         errors.add(:base, "There's already a block counting for this task.")
       end
     end

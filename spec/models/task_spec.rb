@@ -13,4 +13,8 @@ describe Task do
   it "should be invalid without a project" do
     expect(FactoryGirl.build(:task, project: nil).valid?).to be_false
   end
+
+  it "should be counting if there's a block counting" do
+    expect(FactoryGirl.create(:block, ended_at: nil).task.reload.counting?).to be_true
+  end
 end

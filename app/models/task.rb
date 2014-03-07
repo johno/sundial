@@ -7,7 +7,11 @@ class Task < ActiveRecord::Base
 
   validates_presence_of :project
 
-  default_scope ->{ includes(:blocks) }
+  default_scope -> { includes(:blocks) }
+
+  def counting?
+    blocks.select(&:counting?).any?
+  end
 
   private
 
