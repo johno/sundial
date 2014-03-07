@@ -3,10 +3,6 @@ require "spec_helper"
 describe BlocksController do
   describe "routing" do
 
-    it "routes to #index" do
-      get("/blocks").should route_to("blocks#index")
-    end
-
     it "routes to #new" do
       get("/blocks/new").should route_to("blocks#new")
     end

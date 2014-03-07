@@ -17,8 +17,6 @@ describe "tasks/new" do
     assert_select "form[action=?][method=?]", tasks_path, "post" do
       assert_select "input#task_name[name=?]", "task[name]"
       assert_select "textarea#task_description[name=?]", "task[description]"
-      assert_select "input#task_total_seconds[name=?]", "task[total_seconds]"
-      assert_select "input#task_project_id[name=?]", "task[project_id]"
     end
   end
 end

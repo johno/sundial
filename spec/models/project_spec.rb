@@ -12,4 +12,5 @@ describe Project do
   it { should respond_to(:user)        }
   it { should respond_to(:color)       }
   it { should respond_to(:description) }
+
 end
