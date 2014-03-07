@@ -5,6 +5,6 @@ FactoryGirl.define do
     name "MyString"
     description "MyText"
     total_seconds 1
-    project_id 1
+    project
   end
 end

@@ -1,5 +1,17 @@
 class Task < ActiveRecord::Base
-  belongs_to :project
-  has_many :blocks
+  before_save :assign_total_seconds
+
+  belongs_to :project, inverse_of: :tasks
+  has_many :blocks, inverse_of: :task
   has_one :user, through: :project
+
+  validates_presence_of :project
+
+  default_scope ->{ includes(:blocks) }
+
+  private
+
+    def assign_total_seconds
+      self.total_seconds = blocks.map(&:total_seconds).inject(&:+)
+    end
 end
