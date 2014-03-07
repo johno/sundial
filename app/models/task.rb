@@ -12,6 +12,7 @@ class Task < ActiveRecord::Base
   private
 
     def assign_total_seconds
-      self.total_seconds = blocks.map(&:total_seconds).inject(&:+)
+      self.total_seconds = blocks.select(&:counting?)
+                                 .map(&:total_seconds).inject(&:+)
     end
 end

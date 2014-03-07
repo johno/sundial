@@ -35,4 +35,16 @@ describe Block do
       end
     end
   end
+
+  describe "counting" do
+
+    context "multiple counting blocks in one task" do
+
+      before { block.update_attribute(:ended_at, nil) }
+
+      it "shouldn't be allowed" do
+        expect(FactoryGirl.build(:block, task: block.task, ended_at: nil).valid?).to be_false
+      end
+    end
+  end
 end
