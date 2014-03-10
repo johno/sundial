@@ -13,13 +13,11 @@ class BlocksController < ApplicationController
   # GET /blocks/1.json
   def show
     authorize @block
-    puts @block.inspect
   end
 
   # GET /blocks/new
   def new
     @block = Block.new
-    puts @block.inspect
   end
 
   # GET /blocks/1/edit
@@ -31,7 +29,6 @@ class BlocksController < ApplicationController
   # POST /blocks.json
   def create
     @block = Block.new(block_params)
-
     authorize @block
     respond_to do |format|
       if @block.save

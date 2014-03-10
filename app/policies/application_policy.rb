@@ -18,7 +18,7 @@ class ApplicationPolicy
   end
 
   def create?
-    belongs_to_user?
+    belongs_to_user? || @record.user.nil?
   end
 
   def new?
