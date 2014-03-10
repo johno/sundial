@@ -47,6 +47,7 @@ RSpec.configure do |config|
 end
 
 def login_user(user = nil)
-  login_as user || FactoryGirl.create(:user), scope: :user
+  @request.env["devise.mapping"] = Devise.mappings[:user]
+  sign_in user || FactoryGirl.create(:user)
 end
 
